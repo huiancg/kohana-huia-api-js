@@ -1,19 +1,14 @@
 'use strict';
 
-var Model = function(options) {
-  options || (options = {});
-  this.options = _.extend(options, this.options);
-  this.initialize.apply(this, arguments);
-};
+var Model = function() {};
 
-Model.prototype.options = {
+Model.options = {
   'url': base_url + 'api/'
 };
 
-Model.prototype.initialize = function() {};
-
 Model.factory = function(model, id, callback) {
   var self = new Model();
+  self.options = _.extend({}, Model.options);
   self._populate(model, id, callback);
   self._reset();
   return self;
