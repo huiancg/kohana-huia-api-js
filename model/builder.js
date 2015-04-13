@@ -7,9 +7,7 @@ Model.prototype.save = function(object, callback) {
 
 Model.prototype.find = function(callback) {
 	this._first = true;
-  return this.limit(1).execute(function(model) {
-    callback((model) ? model[0] : null);
-  });
+  return this.limit(1).execute(callback);
 };
 
 Model.prototype.find_all = function(callback)
@@ -47,18 +45,18 @@ Model.prototype.execute = function(callback, method, object)
     		callback(null, response.errors);
     	}
       else if (self._count_all) {
-        callback(response, false);
+        callback(response);
       } else {
       	var models = self._collection.models;
       	if (self._first) {
       		models = (models[0]) ? models[0] : null;
       	}
-        callback(models, false);
+        callback(models);
       }
       self._reset();
     })
     .error(function(){
-      callback(null, true);
+      callback(null, [{'internal': 'internal'}]);
       self._reset();
     });
 
