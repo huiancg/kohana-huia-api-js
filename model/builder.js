@@ -32,6 +32,10 @@ Model.prototype.execute = function(callback, method, object)
   };
 
   if (object) {
+  	// accept Backbone Model
+  	if (object.constructor === Function && object.attributes) {
+  		object = object.attributes;
+  	}
   	data = $.extend(data, object);
   }
 
