@@ -1,0 +1,6 @@
+{
+  "name": "huia/model",
+  "version": "0.0.0",
+  "main": "model.js",
+  "license": "MIT"
+}
