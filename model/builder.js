@@ -59,8 +59,8 @@ Model.prototype.execute = function(callback, method, object)
       }
       self._reset();
     })
-    .error(function(){
-      callback(null, [{'internal': 'internal'}]);
+    .error(function(error, status){
+      callback(null, [{'internal': error.statusText}]);
       self._reset();
     });
 
