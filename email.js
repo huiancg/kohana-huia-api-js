@@ -22,12 +22,12 @@ Email.factory = function(options) {
 };
 
 Email.prototype.send = function(callback) {
-  var request = $.post(this.options.url, this.options.data, 'json');
+  var request = $.post(this.options.url, this.options.data);
   
   if (callback) {
     request
 		.success(function(response) {
-		  if (response && response.success) {
+		  if (response && JSON.parse(response).success) {
 			return callback(true);
 		  }
 		  callback(false, 'cant send');
