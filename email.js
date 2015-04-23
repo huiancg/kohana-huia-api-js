@@ -10,9 +10,10 @@ var Email = function(options) {
 
 Email.defaults = {
   'url': base_url + 'huia/email',
-  'view': 'view',
-  'subject': 'Título',
-  'data': {},
+  'data': {  
+	'view': 'view',
+	'subject': 'Título',
+  },
   'callback': null
 };
 
@@ -21,18 +22,18 @@ Email.factory = function(options) {
 };
 
 Email.prototype.send = function(callback) {
-  var request = $.post(this.options.url, _.extend({}, this.options.data, this.options), 'json');
+  var request = $.post(this.options.url, this.options.data, 'json');
   
   if (callback) {
     request
-    .success(function(response) {
-	  if (response && response.success) {
-	    callback(true);
-	  }
-	  callback(false, 'cant send');
-    })
-    .error(function(response) {
-      callback(false, response.statusText);
-    });
+		.success(function(response) {
+		  if (response && response.success) {
+			return callback(true);
+		  }
+		  callback(false, 'cant send');
+		})
+		.error(function(response) {
+		  callback(false, response.statusText);
+		});
   }
 };
