@@ -1,10 +1,10 @@
 {
-  "name": "kohana-huia-api-js",
+  "name": "huiancg/kohana-huia-api-js",
   "version": "1.0.0",
   "main": "huia-api.js",
   "repository": {
     "type": "git",
-    "url": "http://malu.ncgroup.com.br/huia/kohana-huia-api-js.git"
+    "url": "https://github.com/huiancg/kohana-huia-api-js.git"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
